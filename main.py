@@ -2,32 +2,43 @@ import web
 import json
 
 urls = (
-    '/(.*)', 'find_diagnoses'
+    '/diagnoses/(.*)', 'Diagnoses'
 )
 
 app = web.application(urls, globals())
 
-class find_diagnoses:
+class Diagnoses:
     
     def __init__(self):
+        """
+        Load the list of diagnoses from a file on the bootstrap of the app
+
+        """
         self.diagnoses = []
-        # Load diagnoses from file
         with open('short-diagnoses.txt') as object_file:
             for line in object_file:
-                self.diagnoses.append(line[:-1])
+                # The '\n' is removed from the string
+                self.diagnoses.append(line[:-1].lower())
 
-    def GET(self, word):
-        matches = []
-        # find matching strings comparing user input and diagnoses array
-        for d in self.diagnoses:
-            if word in d:
-                matches.append(d)
+    def GET(self, input_diagnosis):
+        """
+        Find matching between input diagnosis and list of available diagnoses
+
+        @param input_diagnosis:     the diagnosis as a string.
+        @returns:                   JSON response, array of possible matches
+        
+        """
+        matched = []
+        
+        for diagnosis in self.diagnoses:
+            if input_diagnosis.lower() in diagnosis:
+                matched.append(diagnosis)
         web.header('Content-Type', 'application/json')
-        return json.dumps(matches)
+        return json.dumps(matched)
         
 
 if __name__ == "__main__":
     print "starting..."
-    f = find_diagnoses()
+    d = Diagnoses()
     app.run()
 
