@@ -1,10 +1,10 @@
 
 Install:
-=============
+-------------
 pip install -r requirements.txt
 
 Execute:
-=============
+-------------
 python main.py
 
 (in browser)
