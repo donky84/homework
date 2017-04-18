@@ -1,0 +1,7 @@
+#python
+*.py[cod]
+
+#Django
+*.log
+*.pot
+*.pyc
