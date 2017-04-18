@@ -1,4 +1,6 @@
 
+This script has been coded with python 2
+
 Install:
 -------------
 pip install -r requirements.txt

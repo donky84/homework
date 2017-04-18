@@ -17,7 +17,7 @@ class Diagnoses:
         self.diagnoses = []
         with open('short-diagnoses.txt') as object_file:
             for line in object_file:
-                # The '\n' is removed from the string
+                # The ending '\n' is removed from each string in the diagnoses file
                 self.diagnoses.append(line[:-1].lower())
 
     def GET(self, input_diagnosis):
@@ -38,7 +38,6 @@ class Diagnoses:
         
 
 if __name__ == "__main__":
-    print "starting..."
     d = Diagnoses()
     app.run()
 
